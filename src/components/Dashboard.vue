@@ -1,7 +1,11 @@
 <template>
   <div id="contatos-table">
-    <Message :msg="msg" v-show="msg"/>  
+    <Message :msg="msg" v-show="msg" />
     <div>
+      <div id="input-table">
+        <input type="text" v-model="searchTerm" placeholder="Buscar por nome, e-mail ou telefone"
+          @input="getContatos" />
+      </div>
       <div id="contatos-table-heading">
         <div>nome</div>
         <div>Email</div>
@@ -16,63 +20,86 @@
         <div>{{ Contato.email }}</div>
         <div>{{ Contato.telefone }}</div>
         <div>
+
           <router-link :to="`/update/${Contato.id}`">
             <button class="editar_btn">Editar</button>
           </router-link>
 
-          <button class="delete_btn" @click="deleteContato(Contato.id,Contato.nome)">Excluir</button>
+          <button class="delete_btn" @click="deleteContato(Contato.id, Contato.nome)">Excluir</button>
         </div>
       </div>
+    </div>
+
+
+    <div id="Pagination-div">
+      <Pagination :totalRows="totalRows" :perPage="perPage" v-model:currentPage="currentPage" />
     </div>
   </div>
 </template>
 
 <script>
 import Message from './Message.vue';
+import Pagination from './Pagination.vue';
 
-name: 'Dashboard'
 export default {
-  components:{
-    Message
+  name: 'Dashboard',
+  components: {
+    Message,
+    Pagination,
   },
   data() {
     return {
       Contatos: [],
-      msg: null
+      msg: null,
+      currentPage: 1,
+      perPage: 6,
+      totalRows: 0,
+      searchTerm: ''
     };
-  }, methods: {
+  },
+  methods: {
     async getContatos() {
       try {
-        const req = await fetch("/api/Contatos/Filtrar");
+        const req = await fetch(`/api/Contatos/Filtrar?PageNumber=${this.currentPage}&PageSize=${this.perPage}&searchTerm=${this.searchTerm}`);
         const data = await req.json();
-        this.Contatos = data
+        const pagination = req.headers.get('X-Pagination');
+
+        if (pagination) {
+          const paginationData = JSON.parse(pagination);
+          this.totalRows = paginationData.TotalItemCount;
+        }
+
+        this.Contatos = data;
       } catch (error) {
         console.error('Error:', error);
       }
     },
-    async deleteContato(id,nome) { 
+    async deleteContato(id, nome) {
       const req = await fetch(`/api/Contatos/${id}`, {
         method: "DELETE",
         headers: {
-          'Accept': 'application/json'
-        }
+          'Accept': 'application/json',
+        },
       });
 
       if (req.ok) {
-        // Atualiza a lista de contatos
         this.getContatos();
-
         this.msg = `Contato ${nome} foi excluído da agenda.`;
-        setTimeout(() => this.msg= "",2000);
+        setTimeout(() => this.msg = "", 2000);
       } else {
         console.error('Erro ao deletar contato:', req.status, req.statusText);
       }
-    }
-    }, mounted() {
+    },
+  },
+  watch: {
+    currentPage() {
+      this.getContatos();
+    },
+  },
+  mounted() {
     this.getContatos();
-  }
-
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -107,13 +134,9 @@ export default {
 .contato-table-row {
   width: 100%;
   padding: 15px;
-  /* Aumenta o padding nas linhas */
   border-bottom: 1px solid #ccc;
-  /* Adiciona uma linha separadora entre os contatos */
   justify-content: space-between;
-  /* Para espaçar as células uniformemente */
   font-size: 16px;
-  /* Aumenta o tamanho da fonte */
 }
 
 .editar_btn,
@@ -132,13 +155,17 @@ export default {
 
 .delete_btn {
   background-color: #dc3545;
-  /* Cor do botão de excluir */
 }
 
 .editar_btn:hover,
 .delete_btn:hover {
   background: transparent;
   color: #222;
-  /* Efeito de hover nos botões */
+}
+
+#Pagination-div {
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
 }
 </style>
