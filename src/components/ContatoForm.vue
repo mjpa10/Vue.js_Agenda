@@ -15,8 +15,11 @@
                     <label for="telefone">telefone:</label>
                     <input type="text" id="telefone" name="telefone" v-model="Telefone" placeholder="Digite o telefone">
                 </div>
-                <div class="input-container">
+                <div class="input-buttons">
                     <input type="submit" class="submit_btn" value="Criar Contato">
+                    <router-link to="/">
+        <button class="Voltar_btn" type="button" value="Voltar">Voltar</button>
+        </router-link>
                 </div>
             </form>
         </div>
@@ -111,31 +114,38 @@ export default {
 <style scoped>
 #contato-form {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    align-items: center;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
-    position: sticky;
-    top: 0;
+    margin: 40px auto; /* Adicionando margem superior para espaçamento */
+    position: relative;
+}
+
+h2 {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    color: #28a745; /* Cor do título */
 }
 
 .input-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+}
+.input-buttons {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 20px; 
 }
 
 label {
     font-weight: bold;
-    margin-bottom: 15px;
     color: #222;
-    padding: 5px 10px;
-    border-left: 5px solid #fcba03;
+    margin-bottom: 5px; /* Espaçamento abaixo do label */
 }
 
 input {
@@ -143,23 +153,52 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #28a745; /* Borda verde ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+.input-buttons {
+    display: flex;
+    justify-content: space-between; /* Distribui os botões */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.submit_btn, .Voltar_btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%; 
+    margin-bottom: 10px; 
 }
 
 .submit_btn {
     background-color: #28a745;
     color: #fff;
-    font-weight: bold;
-    border: 2px solid;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 auto;
-    transition: .5s;
 }
 
 .submit_btn:hover {
-    background: transparent;
-    color: #222;
+    background-color: transparent;
+    color: #28a745;
+    border: 2px solid #28a745; /* Adicionando borda ao passar o mouse */
 }
+
+.Voltar_btn {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.Voltar_btn:hover {
+    background-color: transparent;
+    color: #ffc107;
+    border: 2px solid #ffc107; /* Adicionando borda ao passar o mouse */
+}
+
 </style>

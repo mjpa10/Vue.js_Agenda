@@ -14,11 +14,12 @@
           <label for="telefone">Telefone:</label>
           <input id="telefone" v-model="Contato.telefone" placeholder="Digite o telefone" />
         </div>
-        
+        <div class="input-buttons">
         <input class="submit_btn" type="submit" value="Salvar Alterações">
         <router-link to="/">
         <button class="Voltar_btn" type="button" value="Voltar">Voltar</button>
         </router-link>
+       </div>
       </form>
     </div>
   </template>
@@ -109,83 +110,82 @@
   
   <style scoped>
  #contato-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto; /* Adicionando margem superior para espaçamento */
+    position: relative;
 }
 
 .input-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px; /* Espaçamento entre os campos */
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #222;
-  padding: 5px 10px;
-  border-left: 5px solid #fcba03;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 5px; /* Espaçamento abaixo do label */
 }
 
 input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #28a745; /* Borda verde ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+.input-buttons {
+    display: flex;
+    flex-direction: column; /* Alinha os botões verticalmente */
+    align-items: center; /* Centraliza os botões */
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.submit_btn, .Voltar_btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%; /* Faz os botões ocuparem 100% da largura */
+    margin-bottom: 10px; /* Espaçamento entre os botões */
 }
 
 .submit_btn {
-  background-color: #28a745;
-  color: #fff;
-  font-weight: bold;
-  border: 2px solid;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px;
-  transition: .5s;
+    background-color: #28a745;
+    color: #fff;
 }
 
 .submit_btn:hover {
-  background: transparent;
-  color: #222;
+    background-color: transparent;
+    color: #28a745;
+    border: 2px solid #28a745; /* Adicionando borda ao passar o mouse */
 }
 
 .Voltar_btn {
-  background-color: #ffc107;
-  color: #fff;
-  font-weight: bold;
-  border: 2px solid;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px;
-  transition: .5s;
+    background-color: #ffc107;
+    color: #fff;
 }
 
 .Voltar_btn:hover {
-  background: transparent;
-  color: #222;
-}
-
-.Message {
-  background-color: #d4edda;
-  color: #155724;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #c3e6cb;
-  border-radius: 5px;
+    background-color: transparent;
+    color: #ffc107;
+    border: 2px solid #ffc107; /* Adicionando borda ao passar o mouse */
 }
 
   </style>

@@ -5,14 +5,20 @@
 </template>
 
 <style>
-*{
-  font-family: helvetica;
+* {
+  font-family: Helvetica, Arial, sans-serif; /* Adicionando alternativas de fonte */
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Faz o contêiner ocupar a altura total da viewport */
+}
 
 .main-container{
+  flex: 1;
   margin: 50px;
   min-height: 250px;
 }
