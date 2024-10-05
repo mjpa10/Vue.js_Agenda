@@ -198,20 +198,22 @@ export default {
 .add_btn {
   padding: 10px 15px; 
   background-color: #28a745;  
-
+  border: 2px solid #28a745; 
   }
 
 .editar_btn {
   background-color: #007bff; 
+  border: 2px solid #007bff; 
 }
 
 .delete_btn {
   background-color: #dc3545; 
+  border: 0.5px solid #dc3545; 
 }
 .delete_btn:hover{
   background-color: transparent;
   color: #dc3545;
-  border: 2px solid #dc3545; 
+  border: 0.5px solid #dc3545; 
 }
 
 .editar_btn:hover{

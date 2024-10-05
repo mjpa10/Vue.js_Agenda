@@ -180,6 +180,7 @@ input:focus {
 }
 
 .submit_btn {
+    border: 2px solid #28a745;
     background-color: #28a745;
     color: #fff;
 }
@@ -193,6 +194,7 @@ input:focus {
 .Voltar_btn {
     background-color: #ffc107;
     color: #fff;
+    border: 2px solid #ffc107;
 }
 
 .Voltar_btn:hover {

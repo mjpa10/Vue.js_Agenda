@@ -167,6 +167,7 @@ input:focus {
 }
 
 .submit_btn {
+    border: 2px solid #28a745;
     background-color: #28a745;
     color: #fff;
 }
@@ -178,6 +179,7 @@ input:focus {
 }
 
 .Voltar_btn {
+    border: 2px solid #ffc107;
     background-color: #ffc107;
     color: #fff;
 }
